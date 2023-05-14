@@ -16,3 +16,14 @@
 > - **api** - to contain all REST api
 
 full application will be served from `app.js`
+
+### Models in our project
+
+- User
+- Profile
+- Post
+- Comment
+
+### Relationship hiararchy in our models
+
+`User` -> `Profile` -> `Post` -> `Comment`
