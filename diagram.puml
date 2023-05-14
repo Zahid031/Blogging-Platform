@@ -1,0 +1,63 @@
+@startuml
+title Club Management System - A Multiple User Blog
+
+class User {
+  - id: int
+  - username: string
+  - password: string
+  - email: string
+  - avatar_url: string
+}
+
+class BlogPost {
+  - id: int
+  - title: string
+  - content: string
+  - created_at: datetime
+  - user_id: int
+}
+
+class Comment {
+  - id: int
+  - content: string
+  - user_id: int
+  - post_id: int
+  - created_at: datetime
+}
+
+class Tag {
+  - id: int
+  - name: string
+}
+
+class Like {
+  - id: int
+  - user_id: int
+  - post_id: int
+  - comment_id: int
+  - created_at: datetime
+}
+
+class Bookmark {
+  - id: int
+  - user_id: int
+  - post_id: int
+  - created_at: datetime
+}
+
+User "1" --> "*" BlogPost
+BlogPost "1" --> "*" Comment
+BlogPost "1" --> "*" Like
+BlogPost "1" --> "*" Bookmark
+Comment "1" --> "*" Like
+BlogPost "1" --> "*" Tag
+
+left to right direction
+User --> BlogPost
+BlogPost --> Comment
+BlogPost --> Like
+BlogPost --> Bookmark
+Comment --> Like
+BlogPost --> Tag
+
+@enduml
