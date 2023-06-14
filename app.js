@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 // Import Routes
 const authRoutes = require('./routes/authRoute')
 
+// app calling
 const app = express()
 
 // setup view engine
