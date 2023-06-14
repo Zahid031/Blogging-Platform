@@ -31,6 +31,7 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 8080
 
+// database connection
 mongoose.connect(
   "mongodb+srv://sabbir-veer:projectpass@cluster0.nxnywln.mongodb.net/?retryWrites=true&w=majority",
   { useNewUrlParser: true })
