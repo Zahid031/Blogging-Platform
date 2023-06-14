@@ -27,3 +27,35 @@ full application will be served from `app.js`
 ### Relationship hiararchy in our models
 
 `User` -> `Profile` -> `Post` -> `Comment`
+
+### Routes
+
+1. authRoute
+   - all auth related routes such as login, logout, signup will be handled here
+
+### Controllers
+
+1. authController
+   - authentication related functionalities will be exported from here
+   - Controller functions
+     - signupGetController
+     - signupPostController
+     - loginGetController
+     - loginPostConrtoller
+     - logoutController
+
+### Views
+
+    - pages/auth contains
+        - login page
+        - signup page
+
+    - partials
+        - header
+        - footer
+        - navigation
+
+### Third party libraries
+
+    - bcrypt
+    used for hashing password
