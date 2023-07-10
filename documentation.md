@@ -14,6 +14,7 @@
 > - **validator** - to validate all types of authentication
 > - **public** - to serve all types of public directory
 > - **api** - to contain all REST api
+> - **playground** - testing for validation
 
 full application will be served from `app.js`
 
@@ -59,3 +60,8 @@ full application will be served from `app.js`
 
     - bcrypt
     used for hashing password
+
+### Validation
+
+    - express-validator
+    used for setting up validation of our system
