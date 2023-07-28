@@ -33,6 +33,8 @@ full application will be served from `app.js`
 
 1. authRoute
    - all auth related routes such as login, logout, signup will be handled here
+2. dashboardRoute
+   - only logged in users can access
 
 ### Controllers
 
@@ -44,12 +46,15 @@ full application will be served from `app.js`
      - loginGetController
      - loginPostConrtoller
      - logoutController
+2. dashboardController
 
 ### Views
 
     - pages/auth contains
         - login page
         - signup page
+    -pages/dashboard
+        - dashboard
 
     - partials
         - header
@@ -65,3 +70,18 @@ full application will be served from `app.js`
 
     - express-validator
     used for setting up validation of our system
+    * folder structure
+    - playground > validator.js
+
+### Authentication with cookie and session
+
+    packages used:
+    - express-session
+    - connect-mongodb-session
+
+## Middleware > authMiddleware
+
+when a user is logged in, a session is created automatically  
+and for his/her every next request we will check that he is logged in  
+or not. If he is logged then we will find if the user object is existed in database.  
+If it is presented in database then we'll bind the information of session with request object.

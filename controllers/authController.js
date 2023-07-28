@@ -39,17 +39,18 @@ exports.signupPostController = async (req, res, next) => {
 };
 
 exports.loginGetController = (req, res, next) => {
+  console.log(req.session.isLoggedIn, req.session.user);
   res.render("pages/auth/login", { tittle: "Login to your account", error: {}});
 };
 
 exports.loginPostController = async (req, res, next) => {
   let {email, password} = req.body
-
+  
   let errors = validationResult(req).formatWith(errorFormatter);
   if (!errors.isEmpty()) {
     return res.render("pages/auth/login", {
       tittle: "Login to your account",
-      error: errors.mapped(),
+      error: errors.mapped()
     });
   }
 
@@ -67,13 +68,28 @@ exports.loginPostController = async (req, res, next) => {
         message: 'Invalid Credential'
       })
     }
-
-    console.log('Successfully logged in', user);
-    res.render("pages/auth/login", { tittle: "Login to your account" });
+    req.session.isLoggedIn = true;
+    req.session.user = user;
+    req.session.save(err => {
+      if(err) {
+        console.log(err);
+        return next(err);
+      }
+      res.redirect('/dashboard')
+    })
   } catch (e) {
     console.log(e);
     next(e);
   }
 };
 
-exports.logoutController = (req, res, next) => {};
+exports.logoutController = (req, res, next) => {
+  req.session.destroy(err => {
+    if(err) {
+      console.log(err);
+      return next(err);
+    }
+    return res.redirect('/auth/login')
+  })
+};
+
