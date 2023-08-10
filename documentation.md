@@ -85,3 +85,44 @@ when a user is logged in, a session is created automatically
 and for his/her every next request we will check that he is logged in  
 or not. If he is logged then we will find if the user object is existed in database.  
 If it is presented in database then we'll bind the information of session with request object.
+
+## utils > Flash
+
+Flash is used to create alert message in view.  
+The flash is a special area of the session used for storing messages.  
+Messages are written to the flash and cleared after being displayed to the user.  
+The flash is typically used in combination with redirects, ensuring that the message is  
+available to the next page that is to be rendered.  
+ package used:
+
+- connect-flash  
+  First, setup sessions as usual by enabling cookieParser and session middleware. Then, use flash middleware provided by connect-flash.
+
+## Environment Variable
+
+environment variable is used to make secure variables which don't have  
+access outside of development environment or other users.  
+Such as db username and db password can be stored as environment variables  
+to make those variable secure.  
+ package used:
+
+- dotenv
+
+## Config
+
+configuration of development and production is applied here.  
+ file formats:
+
+- default.json
+  default rules will be written here
+- development.json
+  configuration rules for development will be applied here
+- production.json
+  configuration rules for production will be applied here
+- custom-environment-variables.json  
+  custom configuraton rules such as db username, password, secret key and so on
+
+package used:
+
+- config
+  this package identifies the value of NODE_ENV is either development or production and rest of the rules are applied based on it.
