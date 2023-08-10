@@ -113,16 +113,16 @@ to make those variable secure.
 configuration of development and production is applied here.  
  file formats:
 
-- default.json
+- default.json  
   default rules will be written here
-- development.json
+- development.json  
   configuration rules for development will be applied here
-- production.json
+- production.json  
   configuration rules for production will be applied here
 - custom-environment-variables.json  
   custom configuraton rules such as db username, password, secret key and so on
 
 package used:
 
-- config
+- config  
   this package identifies the value of NODE_ENV is either development or production and rest of the rules are applied based on it.
