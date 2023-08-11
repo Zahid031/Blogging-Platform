@@ -1,76 +1,42 @@
 require("dotenv").config();
 const express = require("express");
-const morgan = require("morgan");
 const mongoose = require("mongoose");
-const session = require("express-session");
-const MongoDBStore = require("connect-mongodb-session")(session);
-const flash = require("connect-flash");
 const config = require('config')
+const chalk = require('chalk')
 
-// Import Routes
-const authRoutes = require("./routes/authRoute");
-const dashboardRoutes = require("./routes/dashboardRoute");
+const setMiddleware = require('./middleware/middleware')
+const setRoutes = require('./routes/routes')
 
-// playground routes
-// const validatorRoute = require('./playground/validator')
 
-// import middleware
-const { bindUserWithRequest } = require("./middleware/authMiddleware");
-const setLocals = require("./middleware/setLocals");
-
-// sabbir-veer projectpass
 const MONGO_URI = `mongodb+srv://${config.get('db-username')}:${config.get('db-password')}@cluster0.nxnywln.mongodb.net/?retryWrites=true&w=majority`;
 
-const store = new MongoDBStore({
-  uri: MONGO_URI,
-  collection: "sessions",
-  expires: 1000 * 60 * 60 * 2,
-});
 
 // app calling
 const app = express();
-
-// console.log(process.env.NODE_ENV);
-// console.log(app.get('env'));
-// const config = require('./config/config')
-// if(app.get('env').toLowerCase() === 'development') {
-//   console.log(config.dev.name);
-// } else {
-//   console.log(config.prod.name);
-// }
-console.log(config.get('name'));
 
 // setup view engine
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-// middleware array
-const middleware = [
-  morgan("dev"),
-  express.static("public"),
-  express.urlencoded({ extended: true }),
-  express.json(),
-  session({
-    secret: config.get('secret'),
-    resave: false,
-    saveUninitialized: false,
-    store: store,
-  }),
-  bindUserWithRequest(),
-  setLocals(),
-  flash(),
-];
-app.use(middleware);
+// Using middleware from middleware directory
+setMiddleware(app)
+// Using routes from route directory
+setRoutes(app)
 
-app.use("/auth", authRoutes);
-app.use("/dashboard", dashboardRoutes);
-// app.use('/playground', validatorRoute)
+app.use((req, res, next) => {
+  let error = new Error('404 Page Not Found')
+  error.status = 404
+  next(error)
+})
 
-app.get("/", (req, res) => {
-  res.json({
-    message: "Hello from the server!",
-  });
-});
+app.use((error, req, res, next) => {
+  if(error.status === 404) {
+    return res.render('pages/error/404', {flashMessage: {}})
+  }
+  console.log(chalk.red.inverse(error.message));
+  console.log(error);
+  res.render('pages/error/500', {flashMessage: {}})
+})
 
 const PORT = process.env.PORT || 8080;
 
@@ -79,8 +45,8 @@ mongoose
   .connect(MONGO_URI, { useNewUrlParser: true })
   .then(() => {
     app.listen(PORT, () => {
-      console.log("Database Connected!..");
-      console.log(`app listening on port ${PORT}`);
+      console.log(chalk.green('Database Connected!..'));
+      console.log(chalk.blue(`app listening on port ${PORT}`));
     });
   })
   .catch((e) => {

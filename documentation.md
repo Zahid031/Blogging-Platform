@@ -35,6 +35,8 @@ full application will be served from `app.js`
    - all auth related routes such as login, logout, signup will be handled here
 2. dashboardRoute
    - only logged in users can access
+3. routes
+   - to handle all routes from this file
 
 ### Controllers
 
@@ -79,12 +81,15 @@ full application will be served from `app.js`
     - express-session
     - connect-mongodb-session
 
-## Middleware > authMiddleware
+## Middleware
 
-when a user is logged in, a session is created automatically  
-and for his/her every next request we will check that he is logged in  
-or not. If he is logged then we will find if the user object is existed in database.  
-If it is presented in database then we'll bind the information of session with request object.
+1. middleware
+   - to handle and use all middlewares from this file
+2. authMiddleware  
+   when a user is logged in, a session is created automatically  
+   and for his/her every next request we will check that he is logged in  
+   or not. If he is logged then we will find if the user object is existed in database.  
+   If it is presented in database then we'll bind the information of session with request object.
 
 ## utils > Flash
 
@@ -126,3 +131,19 @@ package used:
 
 - config  
   this package identifies the value of NODE_ENV is either development or production and rest of the rules are applied based on it.
+
+## Error handling and Debugging
+
+package used:
+
+- debug
+  this npm package is used to print various types of errors and declarations in console.
+  -chalk
+  we can colorize different text in our console
+
+* pages/error
+  - 404.ejs
+    this page serves 404 error that is requesting to access any route that doesn't exist
+  - 500.ejs
+    this page serves any kind of internal server error
+  - both controller are applied in app.js file
