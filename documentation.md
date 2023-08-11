@@ -90,6 +90,11 @@ full application will be served from `app.js`
    and for his/her every next request we will check that he is logged in  
    or not. If he is logged then we will find if the user object is existed in database.  
    If it is presented in database then we'll bind the information of session with request object.
+3. uploadMiddleware  
+    This middleware is used to upload files in our expected directory.
+   package used:
+   - multer  
+     Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
 
 ## utils > Flash
 
