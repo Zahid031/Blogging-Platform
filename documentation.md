@@ -142,8 +142,8 @@ package used:
   we can colorize different text in our console
 
 * pages/error
-  - 404.ejs
+  - 404.ejs  
     this page serves 404 error that is requesting to access any route that doesn't exist
-  - 500.ejs
-    this page serves any kind of internal server error
+  - 500.ejs  
+    this page serves any kind of internal server error  
   - both controller are applied in app.js file
