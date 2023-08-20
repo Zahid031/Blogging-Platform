@@ -6,7 +6,7 @@ const Comment = require('./Comment')
 
 const postSchema = new Schema(
   {
-    title: {
+    tittle: {
       type: String,
       required: true,
       trim: true,
@@ -15,6 +15,7 @@ const postSchema = new Schema(
     body: {
       type: String,
       required: true,
+      maxlength: 5000
     },
     author: {
       type: Schema.Types.ObjectId,

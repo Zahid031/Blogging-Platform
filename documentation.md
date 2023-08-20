@@ -49,6 +49,16 @@ full application will be served from `app.js`
      - loginPostConrtoller
      - logoutController
 2. dashboardController
+   - creating and editing profile controllers will be exported from here
+   - controller functions
+     - dashboardController (main dashboard page controller)
+     - createProfileGetController
+     - createProfilePostController
+     - editProfileGetController
+     - editProfilePostController
+3. uploadController
+   - uploadProfilePics
+   - removeProfilePics
 
 ### Views
 
@@ -57,7 +67,12 @@ full application will be served from `app.js`
         - signup page
     -pages/dashboard
         - dashboard
-
+        - create-profile
+        - edit-profile
+    - pages/error
+      - serving error related pages
+        - 404 (if requested data or page not found)
+        - 500 (all errors except 404)
     - partials
         - header
         - footer
@@ -150,5 +165,50 @@ package used:
   - 404.ejs  
     this page serves 404 error that is requesting to access any route that doesn't exist
   - 500.ejs  
-    this page serves any kind of internal server error  
+    this page serves any kind of internal server error
   - both controller are applied in app.js file
+
+## Profile
+
+> profile pics upload
+
+- public/scripts/profilePicsUpload  
+  profile pics adding, cropping, removing all functionalities applied here
+- package used  
+  croppie JS
+  - Croppie is a fast, easy to use image cropping plugin with tons of configuration options!
+
+> validation
+
+- validator/dashboard/profileValidator
+  - all profile related validation implemented here
+
+## Creating post
+
+- views/pages/dashboard/post/createPost.ejs  
+  this page contains the form of creating post
+- library used
+- tinymce  
+  It provides a fully featured rich text editor where user can  
+  create posts as they like.
+  - public/scripts/tinymce.js  
+    here the functionality and configurations are defined
+  - controller and route are added to uploadController and uploadRoutes respectively
+
+> Post Validation
+
+- validator/dashboard/post/postValidator.js  
+   validation of post tittle and post body implemented
+
+> Post Manage
+
+- controllers/postController
+- routes/postRoute
+
+> Package and libraries
+
+- cheerio
+  used for converting generated html tags to plain text without tag so that actual  
+  length of the post can be measured
+- reading-time  
+  used for calculating reading time of our post
