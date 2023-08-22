@@ -207,8 +207,43 @@ package used:
 
 > Package and libraries
 
-- cheerio
+- cheerio  
   used for converting generated html tags to plain text without tag so that actual  
   length of the post can be measured
 - reading-time  
   used for calculating reading time of our post
+
+## API
+
+> controllers
+
+- bookmarkController
+  boookmark related functionalities are handled from here
+- commentController  
+  comment related functionalities are handled from here
+- likeDislikeController  
+   like and dislike related functionalities are handled from here
+
+> routes
+
+- all routes related to these api's are serverd from apiRoutes
+
+## Explore All Posts
+
+> views/pages/explorer/explorer.ejs
+
+- used to serve dynamic contents to the dashboard
+
+> controllers/exploreControllers.js
+
+- implemented functionalities of explorer
+
+> public/routes/exploreRoute.js
+
+- handling explore route
+
+> library/packages
+
+- moment.js  
+  A JavaScript date library for parsing, validating, manipulating, and formatting dates.  
+  This library is used to show how many times ago we created our posts.
