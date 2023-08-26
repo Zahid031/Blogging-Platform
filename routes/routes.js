@@ -5,6 +5,9 @@ const uploadRoute = require('./uploadRoutes')
 const postRoute = require('./postRoute')
 const apiRoutes = require('../api/routes/apiRoutes')
 const exploreRoute = require('./exploreRoute')
+const searchRoute = require('./searchRoute')
+const authorRoute = require('./authorRoutes')
+
 
 const routes = [
     {
@@ -32,15 +35,21 @@ const routes = [
         handler: exploreRoute
     },
     {
+        path: '/search',
+        handler: searchRoute
+    },
+    {
+        path: '/author',
+        handler: authorRoute
+    },
+    {
         path: '/playground',
         handler: playgroundRoute
     },
     {
         path: '/',
         handler: (req, res) => {
-            res.json({
-                message: 'Hello World!'
-            })
+            res.redirect('/explorer')
         }
     }
 ]

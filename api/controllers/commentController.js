@@ -28,7 +28,7 @@ exports.commentPostController = async (req, res, next) => {
             }
         })
 
-        let commentJSON = await Comment.findByid(createdComment._id).populate({
+        let commentJSON = await Comment.findById(createdComment._id).populate({
             path: 'user',
             select: 'profilePics username'
         })
@@ -54,7 +54,7 @@ exports.replyCommentPostController = async (req, res, next) => {
     }
 
     let reply = {
-        body,
+        body,undefined,
         user: req.user._id
     }
 

@@ -50,7 +50,7 @@ exports.likesGetController = async (req, res, next) => {
     }
 }
 
-exports.dislikesGetcontroller = async (req, res, next) => {
+exports.dislikesGetController = async (req, res, next) => {
     let { postId } = req.params;
     let disliked = null;
 

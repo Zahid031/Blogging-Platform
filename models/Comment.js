@@ -14,6 +14,12 @@ const commentSchema = new Schema({
         ref: 'User',
         required: true
     },
+    body: {
+        type: String,
+        trim: true,
+        required: true
+    },
+    
     replies: [
         {
             body: {

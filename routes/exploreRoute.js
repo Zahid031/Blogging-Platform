@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const { isAuthenticated } = require("../middleware/authMiddleware");
 
-const { exploreGetController } = require('../controllers/exploreController')
+const { exploreGetController, singlePostGetController } = require('../controllers/exploreController')
 
-router.get('/', isAuthenticated, exploreGetController)
+router.get('/:postId', singlePostGetController)
+router.get('/', exploreGetController)
 
 module.exports = router

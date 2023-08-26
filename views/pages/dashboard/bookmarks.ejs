@@ -1,22 +1,23 @@
-<%- include('../../../partials/head.ejs') %>
+<%- include('../../partials/head.ejs') %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css" />
 
 <div class="container-fluid">
     <div class="row">
         <div class="com-md-2">
-            <%- include('../../../partials/sidebar.ejs') %>
+            <%- include('../../partials/sidebar.ejs') %>
         </div>
 
-        <div class="col-md-10 my-5">
-            <div class="row">
+        <div class="col-md-10">
+            <div class="row d-flex justify-content-center">
                 <div class="col-md-8 offset-md-2">
-                    <div class="card card-body">
-                        <h5>List of My Posts</h5>
+                    <div class="card card-body my-5">
+
+                        <h5>List of My Bookmarks</h5>
                         <div class="row">
                             <% if(posts.length === 0){ %>
                             <div class="text-center text-muted">
-                                <p>There is no posts available right now</p>
-                                <a href="/posts/create" class="btn btn-primary btn-sm">Create Post Now</a>
+                                <p>You Did Not Bookmarked Any Post</p>
+
                             </div>
                             <% } else { %>
                             <% for(let post of posts.reverse()) { %>
@@ -25,7 +26,7 @@
                                 <img src="<%= post.thumbnail %>" alt="<%= post.tittle %>" class="card-img-top mt-3">
                                 <% } %>
                                 <div class="card-body">
-                                    <a href="/posts/edit/<%= post._id %>" style="color: #222;">
+                                    <a href="/explorer/<%= post._id %>" style="color: #222;">
                                         <h5><%= post.tittle %></h5>
                                     </a>
                                 </div>
@@ -33,6 +34,7 @@
                             <% } %>
                             <% } %>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -42,7 +44,7 @@
 
 </div>
 
-<%- include('../../../partials/footer.ejs') %>
+<%- include('../../partials/footer.ejs') %>
 
 </body>
 
