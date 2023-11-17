@@ -47,7 +47,7 @@ exports.exploreGetController = async (req, res, next) => {
 
   let { order, filterObj } = generateFilterObject(filter.toLowerCase());
   let currentPage = parseInt(req.query.page) || 1;
-  let itemPerPage = 1;
+  let itemPerPage = 2;
 
   try {
     let posts = await Post.find(filterObj)

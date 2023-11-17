@@ -138,7 +138,7 @@ exports.editPostPostController = async(req, res, next) => {
 }
 
 exports.deletePostGetController = async (req, res, next) => {
-  let { postId } = req.params
+  let { postId } = req.params;
 
   try {
     let post = await Post.findOne({author: req.user._id, _id: postId})

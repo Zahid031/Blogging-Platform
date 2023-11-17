@@ -8,7 +8,8 @@ html,
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
-  background: rgb(245, 245, 245);
+  /* background: rgb(245, 245, 245); */
+  background-image: linear-gradient(to right, #ebf4f5, #b5c6e0);
 }
 .my-container {
   min-height: 545px;
@@ -19,4 +20,22 @@ footer {
   color: #fff;
   text-align: center;
   padding: 10px 0px;
+}
+
+.design {
+  border-radius: 10px;
+  box-sizing: initial;
+  border-left: 7px solid #4d5bf9;
+  background: #4d5bf9;
+  transition: 0.5s;
+}
+.design > .list-group > .list-group-item > a {
+  text-decoration: none;
+}
+
+.design > .list-group > .list-group-item:hover {
+  /* background: #4d5bf9;
+  color: #fff; */
+  margin-left: 10px;
+  transition: 0.5s;
 }
